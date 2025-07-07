@@ -145,33 +145,48 @@ const AboutMe = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {/* Section Header */}
+        {/* Section Header dengan Animasi Underline yang Diperbarui */}
         <div className="text-center mb-16">
           <motion.div
-            className="relative inline-block"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="inline-block"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 
-              className="text-4xl font-bold mb-2" 
-              style={{ color: textPrimaryLight }} // Warna teks utama light mode
-            >
-              About Me
+            <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: textPrimaryLight }}>
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                About Me
+              </motion.span>
             </h2>
+            
+            {/* Animasi Underline yang Mirip dengan Certificate */}
             <motion.div
-              className="absolute -bottom-2 left-0 w-full h-0.5 rounded-full"
-              style={{
-                background: `linear-gradient(90deg, 
-                  transparent 0%, 
-                  ${jadeColor} 50%, 
-                  transparent 100%
-                )`, // Underline dengan jadeColor
-              }}
+              className="relative mx-auto h-1 bg-gray-100 rounded-full overflow-hidden"
+              style={{ width: '120px' }}
               initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+            >
+              <motion.div 
+                className="absolute top-0 left-0 h-full rounded-full w-20"
+                style={{ backgroundColor: jadeColor }}
+                animate={{
+                  x: [-120, 120, -120],
+                  transition: {
+                    repeat: Infinity,
+                    duration: 3,
+                    ease: "easeInOut"
+                  }
+                }}
+              />
+            </motion.div>
           </motion.div>
         </div>
 

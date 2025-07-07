@@ -268,7 +268,7 @@ const Hero = () => {
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="text-xs font-medium text-gray-700">Open to Work</span>
+                <span className="text-xs font-medium text-gray-700">Open to Recruit</span>
               </motion.div>
 
               {/* Additional floating element */}
