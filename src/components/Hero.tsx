@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-} from "react-icons/fa";
-import { IoTriangle, IoSquare, IoEllipse, IoDiamond, IoCube, IoPrism } from "react-icons/io5";
 import CVViewer from './CVViewer';
 
 const Hero = () => {
@@ -15,296 +9,409 @@ const Hero = () => {
     setIsCVOpen(true);
   };
 
-  const saffronColor = "#F4C430";
-  const saffronDark = "#DAA520";
+  // Jade Color Palette - Simplified
+  const jadeColor = "#00A878";
+  const jadeDark = "#007A5A";
+  const jadeLight = "#4ECDC4";
 
-  // Shapes dekoratif menggunakan react-icons
-  const decorativeShapes = [
-    { Icon: IoTriangle, color: "#E34F26", position: { top: "10%", left: "0%" } },
-    { Icon: IoSquare, color: "#1572B6", position: { top: "10%", right: "0%" } },
-    { Icon: IoEllipse, color: "#F7DF1E", position: { top: "40%", left: "-5%" } },
-    { Icon: IoDiamond, color: "#61DAFB", position: { top: "40%", right: "-5%" } },
-    { Icon: IoCube, color: "#06B6D4", position: { bottom: "10%", left: "0%" } },
-    { Icon: IoPrism, color: "#3178C6", position: { bottom: "10%", right: "0%" } },
-  ];
-
-  // Container untuk animasi
+  // Simple animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3,
+        delayChildren: 0.2,
       },
     },
   };
 
-  // Item untuk animasi
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
   return (
-    <div
-      className="min-h-[calc(100vh-64px)] relative overflow-hidden flex items-center"
-      style={{ backgroundColor: "rgba(36, 41, 47, 0.98)" }}
-    >
-      {/* Background Pattern */}
+    <div id="hero" className="min-h-screen relative overflow-hidden flex items-center bg-white pt-2 pb-8">
+      {/* Enhanced Background */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `
-              radial-gradient(${saffronColor}15 1px, transparent 1px),
-              radial-gradient(${saffronColor}10 1px, transparent 1px)
-            `,
-            backgroundSize: "50px 50px, 25px 25px",
-            backgroundPosition: "0 0, 25px 25px",
-          }}
-        />
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/50 to-jade-50/30" 
+             style={{ background: `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.5) 50%, ${jadeColor}05 100%)` }} />
+        
+        {/* Animated geometric shapes */}
+        <div className="absolute inset-0">
+          {/* Large floating circle */}
+          <motion.div
+            className="absolute w-96 h-96 rounded-full opacity-5"
+            style={{ 
+              backgroundColor: jadeColor,
+              top: '20%',
+              right: '-10%',
+            }}
+            animate={{ 
+              y: [0, -30, 0],
+              rotate: [0, 5, 0],
+            }}
+            transition={{ 
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Medium floating triangle */}
+          <motion.div
+            className="absolute w-32 h-32 opacity-10"
+            style={{ 
+              backgroundColor: jadeLight,
+              clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+              top: '60%',
+              left: '-5%',
+            }}
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
 
-        {/* Gradient overlay */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(circle at 50% 50%, transparent 0%, rgba(36, 41, 47, 0.8) 100%)`,
-          }}
-        />
+          {/* Corner brackets - enhanced */}
+          <div className="absolute top-8 left-8 w-12 h-12">
+            <motion.div 
+              className="absolute top-0 left-0 w-8 h-1 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ width: 0 }}
+              animate={{ width: 32 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            />
+            <motion.div 
+              className="absolute top-0 left-0 w-1 h-8 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ height: 0 }}
+              animate={{ height: 32 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            />
+          </div>
+          
+          <div className="absolute top-8 right-8 w-12 h-12">
+            <motion.div 
+              className="absolute top-0 right-0 w-8 h-1 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ width: 0 }}
+              animate={{ width: 32 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            />
+            <motion.div 
+              className="absolute top-0 right-0 w-1 h-8 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ height: 0 }}
+              animate={{ height: 32 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            />
+          </div>
+          
+          <div className="absolute bottom-8 left-8 w-12 h-12">
+            <motion.div 
+              className="absolute bottom-0 left-0 w-8 h-1 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ width: 0 }}
+              animate={{ width: 32 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+            />
+            <motion.div 
+              className="absolute bottom-0 left-0 w-1 h-8 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ height: 0 }}
+              animate={{ height: 32 }}
+              transition={{ delay: 1.1, duration: 0.8 }}
+            />
+          </div>
+          
+          <div className="absolute bottom-8 right-8 w-12 h-12">
+            <motion.div 
+              className="absolute bottom-0 right-0 w-8 h-1 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ width: 0 }}
+              animate={{ width: 32 }}
+              transition={{ delay: 1.0, duration: 0.8 }}
+            />
+            <motion.div 
+              className="absolute bottom-0 right-0 w-1 h-8 opacity-20" 
+              style={{ backgroundColor: jadeColor }}
+              initial={{ height: 0 }}
+              animate={{ height: 32 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            />
+          </div>
+        </div>
+
+        {/* Enhanced floating dots with varied sizes */}
+        <div className="absolute inset-0 pointer-events-none">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full opacity-25"
+              style={{
+                backgroundColor: i % 3 === 0 ? jadeColor : i % 3 === 1 ? jadeLight : jadeDark,
+                width: i % 4 === 0 ? '3px' : i % 4 === 1 ? '2px' : '1.5px',
+                height: i % 4 === 0 ? '3px' : i % 4 === 1 ? '2px' : '1.5px',
+                left: `${15 + i * 8}%`,
+                top: `${10 + (i * 6) % 60}%`,
+              }}
+              animate={{
+                y: [0, -12, 0],
+                opacity: [0.25, 0.7, 0.25],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 4 + i * 0.3,
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Main content */}
       <motion.div 
-        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="container mx-auto px-6 lg:px-12 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center justify-items-center">
-          {/* Left - Photo section */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-8 items-center lg:items-start">
+          
+          {/* Left - Photo Section with enhanced effects */}
           <motion.div
-            className="relative flex justify-center items-center w-full"
+            className="flex justify-center items-start" 
             variants={itemVariants}
           >
-            {/* Shapes Dekoratif */}
-            <div className="absolute -inset-10 z-0">
-              {decorativeShapes.map(({ Icon, color, position }, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute p-3 rounded-xl backdrop-blur-sm"
-                  style={{
-                    ...position,
-                    backgroundColor: `${color}10`,
-                    border: `1px solid ${color}30`,
-                  }}
-                  animate={{
-                    y: [0, 10, 0],
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 5,
-                    delay: index * 0.2,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                  }}
-                >
-                  <Icon size={24} color={color} />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Photo container */}
-            <motion.div
-              className="relative group mx-auto"
-              variants={itemVariants}
-            >
-              {/* Glow effect */}
+            <div className="relative flex flex-col items-center">
+              {/* Floating decoration around photo */}
               <motion.div
-                className="absolute -inset-2 rounded-2xl opacity-75 blur-2xl"
-                style={{
-                  background: `conic-gradient(from 0deg at 50% 50%, 
-                    ${saffronColor}20, 
-                    ${saffronDark}20, 
-                    ${saffronColor}20
-                  )`,
-                }}
+                className="absolute -top-6 -left-6 w-4 h-4 rounded-full opacity-40"
+                style={{ backgroundColor: jadeLight }}
                 animate={{
-                  rotate: [0, 360],
+                  scale: [1, 1.2, 1],
+                  opacity: [0.4, 0.8, 0.4],
                 }}
                 transition={{
-                  duration: 10,
+                  duration: 3,
                   repeat: Infinity,
-                  ease: "linear",
+                  delay: 0.5,
+                }}
+              />
+              <motion.div
+                className="absolute -top-8 right-8 w-2 h-2 rounded-full opacity-30"
+                style={{ backgroundColor: jadeDark }}
+                animate={{
+                  y: [0, -8, 0],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  delay: 1,
                 }}
               />
 
-              {/* Foto Hero Section */}
               <motion.div
-                className="relative overflow-hidden rounded-2xl"
-                style={{
-                  width: "320px",
-                  height: "427px",
-                  background: `linear-gradient(to bottom right, 
-                    ${saffronColor}20, 
-                    transparent, 
-                    ${saffronDark}20
-                  )`,
-                  padding: "1px",
+                className="relative rounded-2xl overflow-hidden bg-white"
+                style={{ width: "300px", height: "400px", border: `3px solid ${jadeColor}`, boxShadow: `0 20px 40px ${jadeColor}20` }}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: `0 25px 50px ${jadeColor}30`,
                 }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3 }}
               >
                 <img
                   src="https://morningsidevfd27.com/wp-content/uploads/2016/06/male-silhouette-3x4.jpg"
-                  alt="Dana Raga"
-                  className="w-full h-full object-cover rounded-2xl"
+                  alt="Dana Raga - Web Developer"
+                  className="w-full h-full object-cover"
                 />
-
-                {/* Hover overlay */}
+                
+                {/* Subtle overlay effect on hover */}
                 <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-500 rounded-2xl"
-                  style={{
-                    background: `linear-gradient(135deg, 
-                      ${saffronColor}50,
-                      transparent 50%
-                    )`,
-                  }}
+                  className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-jade-500/5"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                 />
               </motion.div>
-            </motion.div>
+
+              {/* Enhanced status badge */}
+              <motion.div
+                className="absolute -bottom-4 -right-4 bg-white px-3 py-2 rounded-full border flex items-center gap-2 shadow-lg"
+                style={{ borderColor: `${jadeColor}40` }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: jadeColor }}
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <span className="text-xs font-medium text-gray-700">Open to Work</span>
+              </motion.div>
+
+              {/* Additional floating element */}
+              <motion.div
+                className="absolute bottom-12 -left-8 w-3 h-3 rounded-full opacity-30"
+                style={{ backgroundColor: jadeColor }}
+                animate={{
+                  x: [0, 8, 0],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  delay: 2,
+                }}
+              />
+            </div>
           </motion.div>
 
-          {/* Right - Content section */}
+          {/* Right - Content Section with enhanced elements */}
           <motion.div
-            className="space-y-8 text-center lg:text-left"
+            className="flex flex-col justify-start space-y-5 text-center lg:text-left" 
             variants={itemVariants}
           >
-            {/* Label Selamat Datang */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-block"
-            >
-              <motion.span
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium"
-                style={{
-                  background: `linear-gradient(135deg, ${saffronColor}15, ${saffronDark}05)`,
-                  border: `1px solid ${saffronColor}30`,
-                  color: saffronColor,
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
+            <motion.div variants={itemVariants}>
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-white border shadow-sm"
+                style={{ borderColor: `${jadeColor}30`, color: '#374151' }}
               >
-                👋 Halo! Perkenalkan saya
-              </motion.span>
-            </motion.div>
-
-            {/* Nama dan Role */}
-            <motion.div className="space-y-4" variants={itemVariants}>
-              <motion.h1
-                className="text-5xl lg:text-6xl font-bold tracking-tight"
-                style={{
-                  background: `linear-gradient(to right, ${saffronColor}, ${saffronDark})`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontFamily: "'Inter', sans-serif",
-                }}
-              >
-                Dana Raga
-              </motion.h1>
-
-              <motion.div
-                className="text-xl lg:text-2xl font-light"
-                style={{ color: "#8b949e" }}
-              >
+                <span>👋</span>
+                <span>Hi! I'm Dana Raga</span>
                 <motion.div
-                  animate={{
-                    color: ["#8b949e", "#61DAFB", "#8b949e"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <span className="text-gray-400">{"<"}</span>
-                  <span className="font-bold">Web Developer</span>
-                  <span className="text-gray-400">{" />"}</span>
-                </motion.div>
-              </motion.div>
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: jadeColor }}
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </span>
             </motion.div>
 
-            {/* Deskripsi */}
-            <motion.div
-              className="space-y-4 max-w-lg mx-auto lg:mx-0"
+            <motion.h1
+              className="text-5xl lg:text-6xl font-bold leading-tight relative"
+              style={{ color: jadeColor }}
               variants={itemVariants}
             >
-              <p className="text-lg leading-relaxed" style={{ color: "#c9d1d9" }}>
-                Seorang siswa kelas 11 berjurusan PPLG (Pengembangan Perangkat Lunak dan Gim).
-              </p>
-              <p className="text-base leading-relaxed" style={{ color: "#8b949e" }}>
-                Fokus pada pembuatan aplikasi web modern dan interaktif.
-              </p>
-            </motion.div>
+              Dana Raga
+              {/* Subtle text decoration */}
+              <motion.div
+                className="absolute -top-2 -right-2 w-4 h-4 rounded-full opacity-20"
+                style={{ backgroundColor: jadeLight }}
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.3, 1],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  delay: 2,
+                }}
+              />
+            </motion.h1>
 
-            {/* CTA Section */}
             <motion.div 
-              className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start"
+              className="flex flex-col items-center lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-2" 
               variants={itemVariants}
             >
+              <div className="flex items-center gap-2 text-xl lg:text-2xl font-medium">
+                <span style={{ color: jadeColor }}>{'<'}</span>
+                <span className="text-gray-700 font-bold relative">
+                  Web Developer
+                  <motion.div
+                    className="absolute -bottom-1 left-0 h-0.5 rounded-full"
+                    style={{ backgroundColor: jadeColor }}
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 1, duration: 0.8 }}
+                  />
+                </span>
+                <span style={{ color: jadeColor }}>{'/>'}</span>
+              </div>
+              
               <motion.button
                 onClick={handleOpenCV}
-                className="px-8 py-3.5 rounded-lg font-medium relative overflow-hidden group"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm text-white font-medium transition-all duration-300" 
                 style={{
-                  background: `linear-gradient(45deg, ${saffronColor}, ${saffronDark})`,
+                  backgroundColor: jadeColor,
+                  boxShadow: `0 4px 12px ${jadeColor}30`,
                 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  boxShadow: `0 6px 16px ${jadeColor}40`,
+                  y: -1,
+                }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10 text-gray-900">Lihat CV</span>
-                <motion.div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                <motion.span
+                  animate={{ rotate: [0, 10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 3 }}
+                >
+                  📄
+                </motion.span>
+                <span>Lihat CV Saya</span>
               </motion.button>
+            </motion.div>
 
-              {/* Social Media */}
-              <div className="flex items-center gap-5">
-                {[
-                  { Icon: FaGithub, url: "https://github.com/danaaraga" },
-                  { Icon: FaLinkedin, url: "https://linkedin.com/in/dana-raga7" },
-                  { Icon: FaEnvelope, url: "mailto:danaraga101@gmail.com" },
-                ].map(({ Icon, url }, index) => (
-                  <motion.a
-                    key={index}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-lg hover:bg-white/5"
-                    whileHover={{
-                      y: -3,
-                      transition: { duration: 0.2 },
-                    }}
-                    style={{ color: "#8b949e" }}
-                  >
-                    <Icon size={20} />
-                  </motion.a>
-                ))}
+            <motion.div className="space-y-3 pt-2" variants={itemVariants}> 
+              <p className="text-gray-700 leading-relaxed">
+                Siswa kelas 11 jurusan{' '}
+                <span 
+                  className="inline-block px-2 py-1 rounded-md font-medium"
+                  style={{ backgroundColor: `${jadeColor}15`, color: jadeDark }}
+                >
+                  PPLG
+                </span>
+                {' '}di SMKN 1 Ciomas yang passionate dalam pengembangan web modern.
+              </p>
+              <p className="text-gray-500 text-sm">
+                Fokus pada pembuatan aplikasi web interaktif dengan teknologi terkini.
+              </p>
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                 <motion.span 
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs bg-white border"
+                  style={{ backgroundColor: `${jadeColor}08`, borderColor: `${jadeColor}20`, color: jadeDark }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Available for internship opportunities ✨
+                </motion.span>
               </div>
+            </motion.div>
+            
+            <motion.div 
+              className="flex justify-center lg:justify-start mt-5 text-sm" 
+              variants={itemVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+            >
             </motion.div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* CV Viewer Modal */}
       <CVViewer
         isOpen={isCVOpen}
         onClose={() => setIsCVOpen(false)}
