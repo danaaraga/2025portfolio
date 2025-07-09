@@ -651,28 +651,6 @@ const Contact = () => {
           {/* Right Column - Contact Form */}
           <ContactForm />
         </div>
-
-        {/* Response Time */}
-        <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-4 px-8 py-4 bg-white rounded-full shadow-sm border border-gray-200"
-            whileHover={{ 
-              y: -3,
-              boxShadow: '0 10px 25px -5px rgba(0, 168, 120, 0.2)'
-            }}
-          >
-            <span className="text-gray-600">Respon time biasanya</span>
-            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-              &lt; 24 jam
-            </span>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );
