@@ -57,11 +57,6 @@ const Navbar = () => {
   const handleNavClick = (href: string) => {
     setActiveItem(href);
     setIsMobileMenuOpen(false);
-    // Jika menggunakan smooth scroll manual:
-    // const element = document.querySelector(href);
-    // if (element) {
-    //   element.scrollIntoView({ behavior: 'smooth' });
-    // }
   };
 
   useEffect(() => {
@@ -77,7 +72,7 @@ const Navbar = () => {
           }
         });
       },
-      { rootMargin: "-50% 0px -50% 0px" } // Memicu saat section berada di tengah viewport
+      { rootMargin: "-50% 0px -50% 0px" }
     );
     sections.forEach(section => {
       if (section) observer.observe(section);
@@ -109,14 +104,13 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'shadow-lg backdrop-blur-md bg-white/95' : 'bg-white/80 backdrop-blur-sm' // Sedikit penyesuaian opacity
+        isScrolled ? 'shadow-lg backdrop-blur-md bg-white/95' : 'bg-white/80 backdrop-blur-sm'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Tambahkan 'relative' di sini untuk positioning absolut child */}
         <div className="relative flex items-center justify-between h-16">
           {/* Logo Section */}
-          <div className="flex-shrink-0 z-10"> {/* z-10 agar di atas nav items jika overlap */}
+          <div className="flex-shrink-0 z-10">
             <a 
               href="#hero"
               className="text-2xl tracking-tight hover:opacity-80 transition-opacity"
@@ -138,7 +132,7 @@ const Navbar = () => {
                 <motion.li key={item.href} className="relative">
                   <a
                     href={item.href}
-                    className="relative px-3 py-2 text-sm rounded-md transition-colors duration-300 hover:text-emerald-600" // Warna hover disesuaikan
+                    className="relative px-3 py-2 text-sm rounded-md transition-colors duration-300 hover:text-emerald-600"
                     style={{
                       color: activeItem === item.href ? jadeColor : '#374151',
                       fontWeight: 'bold', 
@@ -162,78 +156,62 @@ const Navbar = () => {
           </div>
 
           {/* Right Section: Social Links (Desktop) & Mobile Menu Button */}
-          <div className="flex items-center z-10"> {/* z-10 agar di atas nav items jika overlap */}
+          <div className="flex items-center z-10">
             {/* Social Media Section - Desktop */}
             <div className="hidden md:flex items-center">
+              {/* Fixed container for social links */}
               <motion.div 
-                className="flex items-center space-x-1 px-3 py-1.5 rounded-full border border-gray-200/60 bg-white/50 backdrop-blur-sm" // Background sedikit lebih transparan
+                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 backdrop-blur-sm p-1.5 pl-3"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
+                transition={{ duration: 0.5 }}
                 whileHover={{ 
-                  borderColor: `${jadeColor}50`, // Border lebih jelas saat hover
-                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                  scale: 1.02
+                  borderColor: `${jadeColor}40`,
+                  boxShadow: `0 2px 8px rgba(0, 168, 120, 0.1)`,
                 }}
               >
-                {socialLinks.map((social, index) => (
-                  <motion.div
-                    key={social.name}
-                    className="relative group"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
-                  >
+                <span className="text-xs font-medium text-gray-600 mr-1">Connect</span>
+                
+                <div className="h-5 w-px bg-gray-200 mx-0.5"></div>
+                
+                <div className="flex items-center">
+                  {socialLinks.map((social) => (
                     <motion.a
+                      key={social.name}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative p-2.5 rounded-full transition-all duration-200 block"
-                      style={{ color: social.lightColor || social.hoverColor }}
+                      className="relative p-2 rounded-full transition-all duration-200 group"
+                      style={{ color: '#64748B' }}
                       whileHover={{ 
-                        backgroundColor: `${social.hoverColor}12`, // Background hover lebih subtle
+                        backgroundColor: `${social.hoverColor}10`,
                         color: social.hoverColor,
-                        scale: 1.1 // Scale ikon saat hover
                       }}
                       whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      title={social.name} // Title untuk tooltip bawaan browser
                     >
-                      <social.icon size={18} />
+                      <social.icon size={16} />
                       
-                      {/* Tooltip - sederhana dan efektif */}
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                      {/* Improved tooltip */}
+                      <motion.div 
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 pointer-events-none"
+                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                        whileHover={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <div 
-                          className="px-2.5 py-1.5 rounded-md text-xs font-semibold text-white shadow-lg whitespace-nowrap"
+                          className="px-2 py-1 rounded text-xs font-medium text-white shadow-md whitespace-nowrap"
                           style={{ backgroundColor: social.hoverColor }}
                         >
                           {social.description}
-                          {/* Arrow untuk tooltip */}
                           <div 
-                            className="absolute top-full left-1/2 transform -translate-x-1/2 w-2 h-2 rotate-45"
+                            className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 rotate-45"
                             style={{ backgroundColor: social.hoverColor }}
                           />
                         </div>
-                      </div>
+                      </motion.div>
                     </motion.a>
-                  </motion.div>
-                ))}
-                
-                <motion.div
-                  className="w-px h-6 bg-gray-300/60 mx-1" // Separator lebih jelas
-                  initial={{ scaleY: 0 }}
-                  animate={{ scaleY: 1 }}
-                  transition={{ delay: 0.8, duration: 0.4 }}
-                />
-                
-                <motion.span
-                  className="text-xs font-semibold text-gray-700 px-2" // Warna teks lebih kontras
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.4 }}
-                >
-                  Connect
-                </motion.span>
+                  ))}
+                </div>
               </motion.div>
             </div>
 
@@ -245,13 +223,13 @@ const Navbar = () => {
                   e.stopPropagation();
                   setIsMobileMenuOpen(!isMobileMenuOpen);
                 }}
-                className="p-2 rounded-md transition-colors duration-300 z-20" // z-20 agar di atas mobile menu
+                className="p-2 rounded-md transition-colors duration-300 z-20"
                 style={{ 
                   color: isMobileMenuOpen ? jadeColor : '#374151',
                   backgroundColor: isMobileMenuOpen ? `${jadeColor}10` : 'transparent'
                 }}
                 whileTap={{ scale: 0.95 }}
-                aria-label="Toggle menu" // Untuk accessibility
+                aria-label="Toggle menu"
                 aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? (
@@ -273,16 +251,16 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden border-t border-gray-200/80 shadow-sm" // Shadow tipis
+              className="md:hidden overflow-hidden border-t border-gray-200/80 shadow-sm"
               style={{ backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)' }}
-              onClick={(e) => e.stopPropagation()} // Mencegah penutupan saat klik di dalam menu
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-2 pt-2 pb-4 space-y-1"> {/* Padding bawah ditambah */}
+              <div className="px-2 pt-2 pb-4 space-y-1">
                 {navItems.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
-                    className="block px-3 py-3 text-base rounded-lg transition-all duration-300" // Rounded lebih besar
+                    className="block px-3 py-3 text-base rounded-lg transition-all duration-300"
                     style={{
                       color: activeItem === item.href ? jadeColor : '#374151',
                       backgroundColor: activeItem === item.href ? `${jadeColor}10` : 'transparent',
@@ -292,7 +270,7 @@ const Navbar = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
-                    whileHover={{ backgroundColor: activeItem !== item.href ? `${jadeColor}08` : `${jadeColor}10` }} // Hover effect
+                    whileHover={{ backgroundColor: activeItem !== item.href ? `${jadeColor}08` : `${jadeColor}10` }}
                   >
                     <div className="flex items-center justify-between">
                       <span>{item.label}</span>
@@ -317,13 +295,12 @@ const Navbar = () => {
                   transition={{ delay: navItems.length * 0.05 + 0.1 }}
                 >
                   <motion.div
-                    className="px-3 mb-3" // Margin bawah dikurangi
+                    className="px-3 mb-3"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: navItems.length * 0.05 + 0.2 }}
                   >
                     <h3 className="text-sm font-semibold text-gray-700 mb-1">Terhubung dengan saya:</h3>
-                    {/* <p className="text-xs text-gray-500">Mari berkolaborasi dan berbagi ide!</p> */}
                   </motion.div>
                   
                   <div className="grid grid-cols-3 gap-3 px-3">
@@ -333,7 +310,7 @@ const Navbar = () => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex flex-col items-center p-3 rounded-xl border border-gray-200/70 bg-white/70 backdrop-blur-sm transition-all duration-200 shadow-sm" // Border & shadow
+                        className="flex flex-col items-center p-3 rounded-xl border border-gray-200/70 bg-white/70 backdrop-blur-sm transition-all duration-200 shadow-sm"
                         style={{ 
                           borderColor: `${social.hoverColor}25`,
                         }}
@@ -342,19 +319,19 @@ const Navbar = () => {
                           backgroundColor: `${social.hoverColor}10`,
                           borderColor: `${social.hoverColor}40`,
                           y: -2,
-                          boxShadow: `0 4px 10px ${social.hoverColor}15` // Shadow saat hover
+                          boxShadow: `0 4px 10px ${social.hoverColor}15`
                         }}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: navItems.length * 0.05 + 0.3 + index * 0.1 }}
                       >
                         <motion.div
-                          className="p-2 rounded-full mb-1.5" // Margin bawah ikon dikurangi
-                          style={{ backgroundColor: `${social.hoverColor}1A` }} // Background ikon lebih soft
+                          className="p-2 rounded-full mb-1.5"
+                          style={{ backgroundColor: `${social.hoverColor}1A` }}
                           whileHover={{ scale: 1.08 }}
                         >
                           <social.icon 
-                            size={22} // Ukuran ikon disesuaikan
+                            size={22}
                             style={{ color: social.hoverColor }}
                           />
                         </motion.div>
@@ -364,10 +341,6 @@ const Navbar = () => {
                         >
                           {social.name}
                         </span>
-                        {/* Deskripsi di mobile menu bisa dihilangkan agar lebih ringkas jika perlu */}
-                        {/* <span className="text-[10px] text-gray-500 text-center leading-tight mt-0.5">
-                          {social.description}
-                        </span> */}
                       </motion.a>
                     ))}
                   </div>
