@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   FaGithub, FaLinkedin, FaInstagram, FaEnvelope, 
-  FaHeart, FaChevronUp, FaMapMarkerAlt
+  FaChevronUp, FaMapMarkerAlt
 } from 'react-icons/fa';
 
 // --- CONSTANTS ---
@@ -338,19 +338,9 @@ const Footer: React.FC = () => {
                   <span>© {currentYear} Dana Raga</span>
                   <span className="mx-2 text-gray-400">|</span>
                   <span className="flex items-center">
-                    Dibuat dengan <FaHeart className="mx-1.5 text-red-500" size={12} /> menggunakan React & TypeScript
+                    Dibuat menggunakan React & TypeScript
                   </span>
                 </motion.div>
-                
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-xs text-gray-600"
-                >
-                  Terakhir diperbarui: Juli 2025
-                </motion.p>
               </div>
             </div>
           </motion.div>
