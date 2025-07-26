@@ -239,7 +239,7 @@ const Hero = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img
-                  src="https://morningsidevfd27.com/wp-content/uploads/2016/06/male-silhouette-3x4.jpg"
+                  src="/src/assets/img/test.png"
                   alt="Dana Raga - Web Developer"
                   className="w-full h-full object-cover"
                 />
