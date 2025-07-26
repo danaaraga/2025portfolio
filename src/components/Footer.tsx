@@ -43,13 +43,13 @@ const socialLinks: SocialLink[] = [
   },
   {
     icon: FaLinkedin,
-    href: 'https://linkedin.com/in/danaaraga',
+    href: 'https://linkedin.com/in/dana-raga7',
     label: 'LinkedIn',
     color: '#0077B5'
   },
   {
     icon: FaInstagram,
-    href: 'https://instagram.com/danaaraga',
+    href: 'https://instagram.com/danaragaa',
     label: 'Instagram',
     color: '#E4405F'
   },
